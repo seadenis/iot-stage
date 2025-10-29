@@ -1,0 +1,18 @@
+- name: "Создать каталог secrets"
+  file:
+    path: /opt/iot-stage/secrets
+    state: directory
+    mode: "0700"
+
+- name: "Рендер grafana_pw.txt из Vault"
+  template:
+    src: pw.txt.j2
+    dest: /opt/iot-stack/secrets/grafana_pw.txt
+    mode: "0400"
+  vars:
+    secret: "{{ vault_grafana_pw }}"
+
+- name: "Обновить стек"
+  command: docker compose up -d
+  args:
+    chdir: /opt/iot-stack
