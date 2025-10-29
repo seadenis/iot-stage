@@ -1,5 +1,12 @@
+secrets:
+  grafana_pw:
+    file: ./secrets/grafana_pw.txt
+
+services:
   grafana:
     image: grafana/grafana:latest
+    secrets:
+      - grafana_pw
     user: root
     restart: unless-stopped
 #    depends_on:
@@ -13,8 +20,9 @@
     ports:
       - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD}
-      - GF_SERVER_ROOT_URL=https://dansu.ru
+#      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD}
+      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_pw
+#      - GF_SERVER_ROOT_URL=https://dansu.ru
       - GF_SERVER_SERVE_FROM_SUB_PATH=false
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
