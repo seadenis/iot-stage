@@ -1,3 +1,9 @@
+- name: Clone / update stack repo
+  git:
+    repo: "https://github.com/seadenis/iot-stage.git"
+    dest: /opt/iot-stage
+    version: main
+
 - name: "Создать каталог secrets"
   file:
     path: /opt/iot-stage/secrets
@@ -7,7 +13,7 @@
 - name: "Рендер grafana_pw.txt из Vault"
   template:
     src: pw.txt.j2
-    dest: /opt/iot-stack/secrets/grafana_pw.txt
+    dest: /opt/iot-stage/secrets/grafana_pw.txt
     mode: "0400"
   vars:
     secret: "{{ vault_grafana_pw }}"
@@ -15,4 +21,4 @@
 - name: "Обновить стек"
   command: docker compose up -d
   args:
-    chdir: /opt/iot-stack
+    chdir: /opt/iot-stage
