@@ -21,7 +21,7 @@ services:
       - "3000:3000"
     environment:
 #      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD}
-      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_pw
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/grafana_pw
 #      - GF_SERVER_ROOT_URL=https://dansu.ru
       - GF_SERVER_SERVE_FROM_SUB_PATH=false
       - GF_AUTH_ANONYMOUS_ENABLED=true
