@@ -1,4 +1,5 @@
 - hosts: vps
   become: true
+  become_method: sudo
   roles:
     - stack   # роль, которая git-pull docker-compose.yml и run docker compose
