@@ -1,0 +1,4 @@
+- hosts: vps
+  become: true
+  roles:
+    - stack   # роль, которая git-pull docker-compose.yml и run docker compose
