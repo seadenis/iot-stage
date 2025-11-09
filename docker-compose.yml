@@ -4,7 +4,7 @@ secrets:
 
 services:
   grafana:
-    image: grafana/grafana-oss:12.2.0-17142428006-ubuntu
+    image: grafana/grafana:12.3.0-19020365962
     secrets:
       - grafana_pw
     user: root
