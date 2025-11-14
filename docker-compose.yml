@@ -4,7 +4,7 @@ secrets:
 
 services:
   grafana:
-    image: grafana/grafana:12.3.0-19020365962
+    image: grafana/grafana:9799770991
     secrets:
       - grafana_pw
     user: root
